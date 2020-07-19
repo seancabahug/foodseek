@@ -11,10 +11,6 @@ var userSchema = new mongoose.Schema({
             message: props => "Username must be alphanumeric and between 3 and 16 characters"
         }
     },
-    currency: {
-        type: Number,
-        required: true
-    },
     password: {
         type: String,
         required: true
@@ -29,10 +25,10 @@ var userSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid email address!`
         }
     },
-    registeredEvents: [{
-        type: String,
+    isFoodProvider: {
+        type: Boolean,
         required: true
-    }]
+    }
 });
 
 module.exports = new mongoose.model('Users', userSchema);

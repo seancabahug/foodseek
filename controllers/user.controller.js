@@ -70,7 +70,7 @@ exports.register = (req, res, next) => {
                             username: req.body.username,
                             password: hash,
                             email: req.body.email,
-                            currency: 0
+                            isFoodProvider: req.body.isFoodProvider
                         });
                         userObject.save().then(userObj => { // Add user to database
                             res.status(201).send({

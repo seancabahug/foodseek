@@ -38,10 +38,10 @@ app.use((res, req, next) => {
 const apiRoute = require('./routes/api.route');
 app.use('/api', apiRoute);
 
-app.use('/', express.static(__dirname + '/frontend/public'));
+app.use('/', express.static(__dirname + '/frontend/build'));
 
 app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/frontend/public/index.html');
+    res.sendFile(__dirname + '/frontend/build/index.html');
 });
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });

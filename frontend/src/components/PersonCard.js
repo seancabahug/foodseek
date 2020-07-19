@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import { Button } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -10,30 +11,27 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { blue } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import {blue, green, orange, yellow, pink, gray, red, cyan} from '@material-ui/core/colors';
+import ChatIcon from '@material-ui/icons/Chat';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 483,
-    height: 851,
+    width: "28%",
     zIndex: 401,
     position: "absolute",
-    right: "5%",
-    top: "50%",
+    right: "3%",
+    top: "55%",
     transform: "translateY(-50%)",
-    backgroundColor: "#fbfbfb",
-    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+    backgroundColor: "white",
+    boxShadow: "0px 5px 5px rgba(0, 0, 0, 0.25)",
     borderRadius: "20px",
     padding: "10px"
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-    borderRadius: '10px'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -46,7 +44,9 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: blue[500],
+    backgroundColor: blue[600],
+    width: "100px",
+    height: "100px",
   },
 }));
 
@@ -63,72 +63,38 @@ export default function PersonCard() {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            R
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Your Mom's House"
-        subheader="September 14, 2016"
+        //action={
+          // <IconButton aria-label="settings">
+          //   <MoreVertIcon />
+          // </IconButton>
+        //}
+         title="Jack"
+         subheader="Province, City, State"
       />
-      <CardMedia
+      {/* <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
-      />
+        //image="https://cdn.discordapp.com/avatars/214479592000323584/0fbab8b2fe9b9d6964b7e9b026c8759c.png"
+        title="nose"
+        
+      /> */}
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          A fun place to stay ;D
+        <Typography variant="h5" color="textSecondary" component="h1" style={{marginBottom: "15px"}}>
+          About Me
         </Typography>
+        <Typography variant="body1" style={{lineHeight: "30px"}}>
+          Quis commodo consectetur irure pariatur culpa elit deserunt deserunt ea incididunt. 
+          Lorem Ipsum this is some text. Quis commodo consectetur irure pariatur culpa elit deserunt deserunt ea incididunt. 
+          Lorem Ipsum this is some text. Quis commodo consectetur irure pariatur culpa elit deserunt deserunt ea incididunt. 
+          Lorem Ipsum this is some text
+        </Typography> 
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
+        <Button aria-label="Message" color="primary" variant="contained" style={{marginLeft: "5px"}}>
+          Message
+        </Button>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-            minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-            browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-            and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-            pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-            without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-            medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-            again without stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-        </CardContent>
-      </Collapse>
     </Card>
   );
 }
