@@ -11,6 +11,10 @@ var userSchema = new mongoose.Schema({
             message: props => "Username must be alphanumeric and between 3 and 16 characters"
         }
     },
+    realName: {
+        type: String,
+        required: true
+    },
     password: {
         type: String,
         required: true

@@ -20,6 +20,10 @@ const styles = theme => ({
   },
 });
 
+function ListItemLink(props) {
+    return <ListItem button component="a" {...props} />;
+}
+
 class MessagingPage extends React.Component {
   constructor(props){
       super(props);
@@ -30,7 +34,7 @@ class MessagingPage extends React.Component {
     return (
         <div width="10%" height="100%">
         <List className={classes.root}  >
-        <ListItem alignItems="flex-start">
+        <ListItemLink alignItems="flex-start">
             <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
             </ListItemAvatar>
@@ -50,9 +54,9 @@ class MessagingPage extends React.Component {
                 </React.Fragment>
             }
             />
-        </ListItem>
+        </ListItemLink>
         <Divider variant="inset" component="li" />
-        <ListItem alignItems="flex-start">
+        <ListItemLink alignItems="flex-start">
             <ListItemAvatar>
             <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
             </ListItemAvatar>
@@ -72,9 +76,9 @@ class MessagingPage extends React.Component {
                 </React.Fragment>
             }
             />
-        </ListItem>
+        </ListItemLink>
         <Divider variant="inset" component="li" />
-        <ListItem alignItems="flex-start">
+        <ListItemLink alignItems="flex-start">
             <ListItemAvatar>
             <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
             </ListItemAvatar>
@@ -96,7 +100,7 @@ class MessagingPage extends React.Component {
 
             
             />
-        </ListItem>
+        </ListItemLink>
         </List>
         </div>
       );

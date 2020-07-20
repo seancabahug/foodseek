@@ -10,6 +10,7 @@ export default function Register() {
     let history = useHistory();
 
     const [usernameValue, setUsernameValue] = React.useState("");
+    const [realNameValue, setRealNameValue] = React.useState("");
     const [passwordValue, setPasswordValue] = React.useState("");
     const [emailValue, setEmailValue] = React.useState("");
     const [locationValue, setLocationValue] = React.useState("");
@@ -37,6 +38,7 @@ export default function Register() {
                         <h1>Register!</h1>
                         <div className="buttonContainer">
                             <TextField placeholder="Username" onChange={event => setUsernameValue(event.target.value)} />
+                            <TextField placeholder="Real Name" onChange={event => setRealNameValue(event.target.value)} />
                             <TextField placeholder="Password" type="password" onChange={event => setPasswordValue(event.target.value)} />
                             <TextField placeholder="Email" onChange={event => setEmailValue(event.target.value)} />
                             <FormControlLabel 
@@ -46,6 +48,7 @@ export default function Register() {
                             <Button variant="contained" color="primary" onClick={() => {
                                 APIUtils.registerUser({
                                     username: usernameValue,
+                                    realName: realNameValue,
                                     password: passwordValue,
                                     email: emailValue,
                                     isFoodProvider: isProviderBool

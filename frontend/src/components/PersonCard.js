@@ -83,7 +83,7 @@ export default function PersonCard() {
         <Typography variant="h5" color="textSecondary" component="h1" style={{marginBottom: "15px"}}>
           About Me
         </Typography>
-        <Typography variant="body1" style={{lineHeight: "30px"}}>
+        <Typography variant="body1" style={{lineHeight: "30px"}} >
           Quis commodo consectetur irure pariatur culpa elit deserunt deserunt ea incididunt. 
           Lorem Ipsum this is some text. Quis commodo consectetur irure pariatur culpa elit deserunt deserunt ea incididunt. 
           Lorem Ipsum this is some text. Quis commodo consectetur irure pariatur culpa elit deserunt deserunt ea incididunt. 

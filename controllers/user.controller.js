@@ -24,7 +24,8 @@ exports.login = (req, res, next) => {
                     bcrypt.compare(req.body.password, identification.password, function (err, result) {
                         if (result) {
                             const token = jwt.sign({
-                                accountId: identification._id
+                                accountId: identification._id,
+                                isFoodProvider: identification.isFoodProvider
                             }, process.env.JWT_SECRET, {
                                 expiresIn: "3h"
                             });
@@ -68,6 +69,7 @@ exports.register = (req, res, next) => {
                     bcrypt.hash(req.body.password, salt).then(hash => {
                         var userObject = new userModel({
                             username: req.body.username,
+                            realName: req.body.realName,
                             password: hash,
                             email: req.body.email,
                             isFoodProvider: req.body.isFoodProvider

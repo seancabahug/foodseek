@@ -25,6 +25,7 @@
     "helmet": "^3.23.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.25",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "socket.io": "^2.3.0"
   }
 }

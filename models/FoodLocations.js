@@ -1,14 +1,15 @@
 const Mongoose = require('mongoose');
 
-var foodLocations = new Mongoose.Schema({
-    hero: {
+var foodLocationSchema = new Mongoose.Schema({
+
+    userId: {
         type: String,
         required: true
     },
 
-    recipient: {
-        type: String,
-        required: true 
+    isSource: { // if false, the food location is a request
+        type: Boolean,
+        required: true
     },
 
     description: {
@@ -39,4 +40,4 @@ var foodLocations = new Mongoose.Schema({
     },
 })
 
-module.exports = new Mongoose.model('FoodLocations', foodLocations);
+module.exports = new Mongoose.model('FoodLocations', foodLocationSchema);
