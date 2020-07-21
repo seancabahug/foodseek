@@ -4,6 +4,12 @@ const jwt = require('jsonwebtoken');
 
 const notAllowedUserNames = require('./notAllowed.json').taken;
 
+/**
+ * ERR:01: Inncorrect credentials,
+ * ERR:02: Authentication failed, 
+ * ERR:03: Authentication failed.
+ */
+
 exports.login = (req, res, next) => {
     console.log(notAllowedUserNames.indexOf(req.body.username))
     if (notAllowedUserNames.indexOf(req.body.username) < 0) {
@@ -16,9 +22,7 @@ exports.login = (req, res, next) => {
             .then(identification => {
                 if (!identification) {
                     return res.status(401).send({
-                        // Discord
-                        // yessir
-                        error: "Inncorrect credentials"
+                        error: "Inncorrect credentials (ERR:01)"
                     })
                 } else {
                     bcrypt.compare(req.body.password, identification.password, function (err, result) {
@@ -47,7 +51,6 @@ exports.login = (req, res, next) => {
         })
     }
 }
-
 exports.register = (req, res, next) => {
     if (!notAllowedUserNames.indexOf(req.body.username) < 0) {
         return res.status(401).send({

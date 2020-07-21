@@ -3,10 +3,10 @@ const router = new express.Router();
 
 const routes = {
     users: require('./user.route'),
-    search: require('./search.route')
+    locations: require('./locations.route')
 }
 
 router.use('/users', routes.users);
-router.use('/search', routes.search);
+router.use('/locations', routes.locations);
 
 module.exports = router;

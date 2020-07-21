@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300,200,400,500,600,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@200,700,300,400,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montaga&display=swap');
+
+
 
 #headerContainer {
     font-style: normal;
@@ -17,9 +20,12 @@
     width: 75%;
 }
 
-.callToAction {
+.CallToAction {
     font-size: 2em;
     font-family: 'Montserrat', sans-serif;
+}
+
+.topPage {
 }
 
 .header1 {
@@ -57,3 +63,159 @@
     height: 100%;
 }
 
+.Intro {
+    background-color: #fdf9ee ;
+    width: 100%;
+}
+
+.Intro img {
+    background-color: #fdf9ee ;
+    width: 100%;
+}
+
+.Intro h2 {
+    position: static;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    font-size: 60px;
+}
+
+.Intro h3 {
+    position: static;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 45px;
+}
+
+.Intro h5 {
+    position: static;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    font-size: 40px;
+}
+
+.Unemployment {
+    background-color: #fbfdf4;
+}
+.unemployment {
+    width: 100%;
+}
+
+.unemployment img {
+    width: 41.5%;
+}
+
+.image {
+    text-align: left;
+    width: 50%;
+    display: block;
+}
+
+.text {
+    text-align: right;
+    width: 50%;
+    display: block;
+    position: relative;
+}
+
+.text h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 2em;
+    display: 50%;
+}
+
+.text h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 3em;
+}
+
+.text h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 4em;
+}
+
+.AdultInsecurity {
+    position: static;
+    background-color: #fffef5;
+}
+
+.foodInsecurity h3 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 2em;
+}
+
+.foodInsecurity h2 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 4em;
+}
+.children {
+    position: static;
+    background-color: #FFFDFA;
+}
+.children h1 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 4em;
+}
+
+.children h3 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 3em;
+}
+
+.but {
+    width: 100%;
+    height: 100%;
+}
+
+.But {
+    text-align: center;
+    font-size: 10em;
+}
+.Relief {
+    width: 100%;
+    height: 100%;
+    background-color: #fffdf9;
+}
+
+.You {
+    font-size: 258px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.reliefText {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 4em;
+}
+
+.coffee {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: 30px;
+
+}
+
+.Fight {
+    height: 100%;    
+}
+
+.JoinFight {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    font-size: 5.5em;
+}

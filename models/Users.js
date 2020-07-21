@@ -32,7 +32,11 @@ var userSchema = new mongoose.Schema({
     isFoodProvider: {
         type: Boolean,
         required: true
-    }
+    },
+    recentlyTalkedTo: [{
+        type: String,
+        required: true
+    }]
 });
 
 module.exports = new mongoose.model('Users', userSchema);

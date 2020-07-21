@@ -1,6 +1,4 @@
 const foodLocationModel = require('../models/FoodLocations');
-const userModel = require('../models/Users');
-const bcrypt = require('bcrypt');
 
 exports.create = (req, res, next) => {
     var foodLocationObject = new foodLocationModel({
@@ -22,17 +20,39 @@ exports.create = (req, res, next) => {
     })
 }
 
+/*
+    Location:
+        - Latitude
+        - Longitude
+    Zoom
+*/
+
+const locationRangeOffset = 20;
+exports.searchNearLocation = (req, res, next) => {
+    foodLocationModel.find({ isSource: !req.userData.isFoodProvider })
+        .where('location.latitude').gte(parseInt(req.query.latitude) - locationRangeOffset).lte(parseInt(req.query.latitude) + locationRangeOffset)
+        .where('location.longitude').gte(parseInt(req.query.longitude) - locationRangeOffset).lte(parseInt(req.query.longitude) + locationRangeOffset)
+    .then(foodLocations => {
+        console.dir(foodLocations)
+        res.status(200).send(foodLocations);
+    }).catch(err => {
+        res.status(500).send({
+            error: err
+        });
+    });
+}
+
 exports.delete = (req, res, next) => {
     foodLocationModel.findByIdAndDelete(req.body.eventId, (err, result) => {
         if (!result) {
             res.status(404).send({
-                message: "Event not found."
+                message: "Food location not found."
             });
         } else if (err) {
             console.log(err)
         } else {
             res.status(200).send({
-                message: "Event successfully deleted!"
+                message: "Food location successfully deleted!"
             });
         }
     })
@@ -43,35 +63,23 @@ exports.findLocationById = (req, res, next) => {
         if (err) console.log(err);
         if (event) {
             return res.status(200).send({
-                message: 'Event found!',
+                message: 'Food location found!',
                 data: event
             })
         } else {
             return res.status(403).send({
-                error: 'Event not found!'
+                error: 'Food location not found!'
             })
         }
     })
 };
 
-exports.listEvents = (req, res, next) => {
-    foodLocationModel.find({}, (err, result) => {
-        return res.status(200).send({
-            message: 'Found all events!',
-            data: result
-        })
+exports.listLocations = (req, res, next) => {
+    foodLocationModel.find({ isSource: !req.userData.isFoodProvider }, (err, result) => {
+        return res.status(200).send(result);
     }).catch((err) => {
         return res.status(500).send({
             error: err
         });
     })
 }
-
-/**
- * {
-                "name": "",
-                "managers": req.body.managers,
-                "description": req.body.description,
-                "location": req.body.location
-            }
- */

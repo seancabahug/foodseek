@@ -71,36 +71,28 @@ const APIUtil = {
             cb(0, error);
         })
     },
-    getAllEvents(cb) {
-        sendReq("/api/events/all", {
-            headers: {"Authorization": "Bearer " + cookies.get('token')}
-        }, data => {
-            
-            cb(1, data);
-        }, error => {
-            cb(0, [{name: "Couldn't find events"}]);
-        });
-    },
-    registerEvent(cb, eventId) {
-        sendReq("/api/events/" + eventId + "/register", {
-            method: 'POST',
+    getLocationsFromPosition(dataa, cb) {
+        // https://stackoverflow.com/questions/35038857/setting-query-string-using-fetch-get-request
+        sendReq("/api/locations/near?" + new URLSearchParams(dataa).toString(), {
             headers: {"Authorization": "Bearer " + cookies.get('token')}
         }, data => {
             cb(1, data);
         }, error => {
-            cb(0, [{name: "Couldn't find events"}]);
+            cb(0, [{name: "Couldn't find locations"}]);
+            console.error(error)
         });
     },
-    unRegisterEvent(cb, eventId) {
-        sendReq("/api/events/" + eventId + "/unregister", {
-            method: 'POST',
+    getAllLocations(cb) {
+        // https://stackoverflow.com/questions/35038857/setting-query-string-using-fetch-get-request
+        sendReq("/api/locations/all", {
             headers: {"Authorization": "Bearer " + cookies.get('token')}
         }, data => {
             cb(1, data);
         }, error => {
-            cb(0, [{name: "Couldn't find events"}]);
+            cb(0, [{name: "Couldn't find locations"}]);
+            console.error(error)
         });
-    },
+    }
 };
 
 export default APIUtil;

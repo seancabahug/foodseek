@@ -1,7 +1,6 @@
 const Mongoose = require('mongoose');
 
 var foodLocationSchema = new Mongoose.Schema({
-
     userId: {
         type: String,
         required: true
@@ -23,21 +22,39 @@ var foodLocationSchema = new Mongoose.Schema({
         }
     },
 
-    location: { 
-        type: Number,
-        required: true,
-        validate: {
-            validator: v => {
-                for(i in v) {
-                    if (v.toString().replaceAll(".", "").length <= 7) {
-                        return false;
+    location: {
+        longitude: {
+            type: Number,
+            required: true,
+            validate: {
+                validator: v => {
+                    for(i in v) {
+                        if (v.toString().replaceAll(".", "").length <= 7) {
+                            return false;
+                        }
                     }
-                }
-                return true;
-            },
-            message: props => "Invalid location"
+                    return true;
+                },
+                message: props => "Invalid location"
+            }
+        },
+        latitude: {
+            type: Number,
+            required: true,
+            validate: {
+                validator: v => {
+                    for(i in v) {
+                        if (v.toString().replaceAll(".", "").length <= 7) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+                message: props => "Invalid location"
+            }
         }
-    },
+    }
+    
 })
 
 module.exports = new Mongoose.model('FoodLocations', foodLocationSchema);

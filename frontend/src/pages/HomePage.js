@@ -9,6 +9,11 @@ class HomePage extends React.Component {
         super(props)
     }
 
+    preloadImage(url) {
+        var img = new Image();
+        img.src = url;
+    }
+
     render () {
         return (
             <>
@@ -25,26 +30,32 @@ class HomePage extends React.Component {
                 
                 <section className="Intro">
                     <div style={{zIndex: 15}}>
-                        <img src="/assets/pictures/Firstimage.png" style={{width:"100%"}} className="1stImg" />
+                        <img src="/assets/pictures/Firstimage.png" style={{width:"100%"}, {position:"static"}} className="1stImg" />
                         <h2 z-index="16">Food is one of the most essential needs</h2>
-                        <h3 >it is like water or air</h3>
-                        <h5>But still millions of people don't have reliable access to food</h5>
+                        <h3 >it's like water or air</h3>
+                        <h5>But still, millions of people do not have reliable access to food</h5>
                     </div>
                 </section>
 
                 <section className="Unemployment">
                     <div className="unemployment">
-                        <img src="/assets/pictures/secondImg.png" />
-                        <h5>Highest unemployment rate since the great depression</h5>
-                        <h3>14.7% unemployment rate</h3>
-                        <h1>20 million Americans unemployed</h1>
+                        <div className="image">
+                            <img src="/assets/pictures/secondImg.png" />
+                        </div>
+                        <div className="text">
+                            <h5>Highest unemployment rate since the great depression</h5>
+                            <h3>14.7% unemployment rate</h3>
+                            <h1>20 million Americans unemployed</h1>
+                        </div>
                     </div>
                 </section>
                 <section className="FoodInsecurity">
                     <div className="AdultInsecurity">
                         <img src="/assets/pictures/thirdImg.png" style={{width:"100%"}}/>
-                        <h3>11% of the US population does not have reliable access to food</h3>
-                        <h2>37 million people are food insecure</h2>
+                        <div className="foodInsecurity">
+                            <h3>11% of the US population does not have reliable access to food</h3>
+                            <h2>37 million people are food insecure</h2>
+                        </div>
 
                     </div>
                     <div className="children">
@@ -55,9 +66,7 @@ class HomePage extends React.Component {
 
                 </section>
                 <section className="CallToAction">
-                    <div>
-                        <h1 className="But">but...</h1>
-                    </div>
+                    <h1 className="But">but...</h1>
                     <div className="Relief">
                         <img src="/assets/pictures/fifthImg.png" />
                         <h1 className="You">YOU</h1>
@@ -66,11 +75,12 @@ class HomePage extends React.Component {
                     </div>
                     <div className="Fight">
                     <h1 className="JoinFight">Join the Fight</h1>
+                    <div className="btn">
                     <Button className="signUpBtn"><h1 className="signUpText">Sign Up Now</h1></Button> 
+                    </div>
 
                     </div>
                 </section>
-
             </>
         )
     }

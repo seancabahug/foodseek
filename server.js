@@ -2,7 +2,7 @@ if(process.env.NODE_ENV != "production") require('dotenv').config();
 
 const express = require('express');
 const http = require('http');
-const helmet = require('helmet')
+const helmet = require('helmet');
 const morgan = require('morgan');
 
 const mongoose = require('mongoose');

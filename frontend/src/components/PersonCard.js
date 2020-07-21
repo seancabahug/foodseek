@@ -91,9 +91,12 @@ export default function PersonCard() {
         </Typography> 
       </CardContent>
       <CardActions disableSpacing>
-        <Button aria-label="Message" color="primary" variant="contained" style={{marginLeft: "5px"}}>
+        {/* <Button aria-label="Message" color="primary" variant="contained" style={{marginLeft: "5px"}}>
           Message
-        </Button>
+        </Button> */}
+        <IconButton variant="contained" color="primary">
+          <ChatIcon />
+        </IconButton>
       </CardActions>
     </Card>
   );
