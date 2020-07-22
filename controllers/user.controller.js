@@ -29,6 +29,7 @@ exports.login = (req, res, next) => {
                         if (result) {
                             const token = jwt.sign({
                                 accountId: identification._id,
+                                realName: identification.realName,
                                 isFoodProvider: identification.isFoodProvider
                             }, process.env.JWT_SECRET, {
                                 expiresIn: "3h"
@@ -64,7 +65,7 @@ exports.register = (req, res, next) => {
         if (user) {
             return res.status(403).send({
                 error: 'Sorry, that username is in use!'
-            })
+            });
         } else {
             if (req.body.password) {
                 bcrypt.genSalt(10, function (err, salt) {
@@ -75,7 +76,9 @@ exports.register = (req, res, next) => {
                             realName: req.body.realName,
                             password: hash,
                             email: req.body.email,
-                            isFoodProvider: req.body.isFoodProvider
+                            isFoodProvider: req.body.isFoodProvider,
+                            recentlyTalkedTo: [],
+                            markers: []
                         });
                         userObject.save().then(userObj => { // Add user to database
                             res.status(201).send({
@@ -106,40 +109,6 @@ exports.getSelfInfo = (req, res, next) => {
         .then(user => {
             if (user) {
                 return res.status(201).send(user);
-            } else {
-                return res.status(404).send({
-                    error: "Something's definitely broken, contact sysadmins, like sean, wendys, or those other people with no life (wendys)"
-                })
             }
-        })
-        .catch(err => {
-            return res.status(500).send({
-                error: err
-            });
-        });
-}
-
-exports.leaderboard = (req, res, next) => {
-    userModel.find({
-            currency: {
-                $gte: -1
-            }
-        })
-        .then(users => {
-            if (users) {
-                users.sort((a, b) => {
-                    return a.currency - b.currency;
-                });
-                return res.status(201).send(users.reverse())
-            } else {
-                return res.status(404).send({
-                    error: "Something's definitely broken, contact sysadmins, like sean, wendys, or those other people with no life (wendys)"
-                })
-            }
-        })
-        .catch(err => {
-            return res.status(500).send({
-                error: err
-            });
         });
 }

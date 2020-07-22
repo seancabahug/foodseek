@@ -36,6 +36,10 @@ var userSchema = new mongoose.Schema({
     recentlyTalkedTo: [{
         type: String,
         required: true
+    }],
+    markers: [{
+        type: String,
+        required: true
     }]
 });
 

@@ -1,4 +1,5 @@
 const foodLocationModel = require('../models/FoodLocations');
+const userModel = require('../models/Users');
 
 exports.create = (req, res, next) => {
     var foodLocationObject = new foodLocationModel({
@@ -8,11 +9,14 @@ exports.create = (req, res, next) => {
         location: req.body.location
     });
     foodLocationObject.save().then(eventObj => {
-        // Add event to database
-        res.status(201).send({
-            message: "Successfully saved food location!",
-            event: eventObj
-        });
+        userModel.findById(req.userData.accountId).then(async (user) => {
+            user.markers.push(eventObj._id);
+            await user.save();
+            res.status(201).send({
+                message: "Successfully saved food location!",
+                event: eventObj
+            });
+        })
     }).catch(err => {
         res.status(500).send({
             error: err

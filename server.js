@@ -4,12 +4,14 @@ const express = require('express');
 const http = require('http');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const log = console.log;
 
 const mongoose = require('mongoose');
 
 // Set up our app
 const app = express();
 const server = http.Server(app);
+require('./socketserver').listen(server);
 
 // Initializes the port and the url
 const url = process.env.MONGODB_URL;

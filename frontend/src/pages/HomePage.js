@@ -61,7 +61,7 @@ class HomePage extends React.Component {
                     <div className="children">
                         <img src="/assets/pictures/fourthImg.png" style={{width:"100%"}}/>
                         <h1>11 million children are food insecure</h1>
-                        <h3>They are the most likely to face food insecurity</h3>
+                        <h3>Children are the most likely age group to face food insecurity</h3>
                     </div>
 
                 </section>
