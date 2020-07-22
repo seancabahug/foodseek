@@ -7,6 +7,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import socket from '../utils/socket';
+import { withRouter, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router';
 
 const styles = theme => ({
   root: {
@@ -27,6 +30,12 @@ function ListItemLink(props) {
 class MessagingPage extends React.Component {
     constructor(props){
         super(props);
+        this.client = socket();
+
+      }
+
+    componentWillMount() {
+
     }
 
     render() {
@@ -39,4 +48,4 @@ class MessagingPage extends React.Component {
     }
 }
 
-export default withStyles(styles)(MessagingPage);
+export default withRouter(withStyles(styles)(MessagingPage));

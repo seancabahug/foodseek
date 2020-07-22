@@ -4,7 +4,6 @@ import { Button } from '@material-ui/core';
 import './HomePage.css';
 
 class HomePage extends React.Component {
-
     constructor (props) {
         super(props)
     }
