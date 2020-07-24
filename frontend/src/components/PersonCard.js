@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { Button } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
@@ -16,12 +16,15 @@ import ChatIcon from '@material-ui/icons/Chat';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const useStyles = makeStyles((theme) => ({
+const styles = theme => ({
   root: {
     width: "28%",
     zIndex: 401,
     position: "absolute",
-    right: "3%",
+    right: "-100%", // 3%,
+    transition: theme.transitions.create('right', {
+      duration: theme.transitions.duration.shortest
+    }),
     top: "55%",
     transform: "translateY(-50%)",
     backgroundColor: "white",
@@ -48,56 +51,54 @@ const useStyles = makeStyles((theme) => ({
     width: "100px",
     height: "100px",
   },
-}));
+  cardVisible: {
+    right: "3%"
+  }
+});
 
-export default function PersonCard() {
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+class PersonCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false
+    };
+  }
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  componentDidMount() {
+    console.log("comp mount")
+    this.setState({visible: true})
   };
 
-  return (
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-          </Avatar>
-        }
-        //action={
-          // <IconButton aria-label="settings">
-          //   <MoreVertIcon />
-          // </IconButton>
-        //}
-         title="Jack"
-         subheader="Province, City, State"
-      />
-      {/* <CardMedia
-        className={classes.media}
-        //image="https://cdn.discordapp.com/avatars/214479592000323584/0fbab8b2fe9b9d6964b7e9b026c8759c.png"
-        title="nose"
-        
-      /> */}
-      <CardContent>
-        <Typography variant="h5" color="textSecondary" component="h1" style={{marginBottom: "15px"}}>
-          About Me
-        </Typography>
-        <Typography variant="body1" style={{lineHeight: "30px"}} >
-          Quis commodo consectetur irure pariatur culpa elit deserunt deserunt ea incididunt. 
-          Lorem Ipsum this is some text. Quis commodo consectetur irure pariatur culpa elit deserunt deserunt ea incididunt. 
-          Lorem Ipsum this is some text. Quis commodo consectetur irure pariatur culpa elit deserunt deserunt ea incididunt. 
-          Lorem Ipsum this is some text
-        </Typography> 
-      </CardContent>
-      <CardActions disableSpacing>
-        {/* <Button aria-label="Message" color="primary" variant="contained" style={{marginLeft: "5px"}}>
-          Message
-        </Button> */}
-        <IconButton variant="contained" color="primary">
-          <ChatIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
-  );
+  render() {
+    const { classes } = this.props;
+    return (
+      <Card className={clsx(classes.root, {
+        [classes.cardVisible]: this.state.visible
+      })}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+            </Avatar>
+          }
+          title={this.props.person.realName}
+          subheader={this.props.person.isFoodProvider ? "Volunteer" : "Hero"}
+        />
+        <CardContent>
+          <Typography variant="h5" color="textSecondary" component="h1" style={{marginBottom: "15px"}}>
+            Location Details
+          </Typography>
+          <Typography variant="body1" style={{lineHeight: "30px"}} >
+            {this.props.location.description}
+          </Typography> 
+        </CardContent>
+        <CardActions disableSpacing>
+          <IconButton variant="contained" color="primary">
+            <ChatIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
+    );
+  }
 }
+
+export default withStyles(styles)(PersonCard);

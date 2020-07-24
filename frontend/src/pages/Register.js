@@ -61,6 +61,9 @@ export default function Register() {
                                     }
                                 });
                             }}>Register</Button>
+                            <Button color="secondary" onClick={() => {
+                                history.push('/login')
+                            }}>Already have an account?</Button>
                         </div>
                     </Box>
                 </div>

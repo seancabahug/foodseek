@@ -112,3 +112,17 @@ exports.getSelfInfo = (req, res, next) => {
             }
         });
 }
+
+exports.getUserInfo = (req, res, next) => {
+    userModel.findById(req.params.userId)
+        .select('-password -recentlyTalkedTo')
+        .then(user => {
+            if (user) {
+                return res.status(201).send(user);
+            } else {
+                return res.status(404).send({
+                    error: "Couldn't find a user with that ID."
+                })
+            }
+        })
+}

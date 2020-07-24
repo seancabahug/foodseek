@@ -41,7 +41,7 @@ function App() {
   return (
     <Switch>
       <UnauthenticatedRoute exact path="/">
-        <HomePage />
+        <Redirect to="/login" />
       </UnauthenticatedRoute>
       <UnauthenticatedRoute exact path="/login">
         <Container maxWidth="sm" style={{height: "100vh"}} >

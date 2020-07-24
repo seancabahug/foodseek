@@ -73,7 +73,7 @@ class HomePage extends React.Component {
                         <h3 className="coffee">And it costs less than a cup of coffee</h3>
                     </div>
                     <div className="Fight">
-                    <h1 className="JoinFight">Join the Fight</h1>
+                    <h1 className="JoinFight">Heroes Need Your Help</h1>
                     <div className="btn">
                     <Button className="signUpBtn"><h1 className="signUpText">Sign Up Now</h1></Button> 
                     </div>

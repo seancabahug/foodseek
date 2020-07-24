@@ -92,6 +92,16 @@ const APIUtil = {
             cb(0, [{name: "Couldn't find locations"}]);
             console.error(error)
         });
+    },
+    getUserInformation(userId, cb) {
+        sendReq("/api/users/" + userId, {
+            headers: {"Authorization": "Bearer " + cookies.get('token')}
+        }, data => {
+            cb(1, data);
+        }, error => {
+            cb(0, [{name: "Couldn't find user"}]);
+            console.error(error)
+        });
     }
 };
 

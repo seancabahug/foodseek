@@ -51,6 +51,9 @@ export default function Login() {
                                     }
                                 })
                             }}>{loginButtonText}</Button>
+                            <Button color="secondary" onClick={() => {
+                                history.push('/login')
+                            }}>Don't have an account?</Button>
                         </div>
                     </Box>
                 </div>

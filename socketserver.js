@@ -1,18 +1,20 @@
 const socketio = require('socket.io');
 const jwt = require('jsonwebtoken');
 
-module.exports.listen = app => {
-    const io = socketio.listen(app);
+module.exports = io => {
     var authenticatedClients = [];
 
     io.on('connection', socket => {
-        io.on('authenticate', token => {
+        console.log("conn");
+        socket.on('authenticate', token => {
+            console.log("auth :pog:");
             try {
                 const payload = jwt.verify(token, process.env.JWT_SECRET);
                 if (!authenticatedClients[payload.accountId]) { // No authenticated user exists yet, good to go
                     socket.userData = payload;
                     socket.authenticated = true;
                     authenticatedClients[socket.userData.accountId] = socket;
+                    console.log("authed");
                 } else {
                     // An authenticated user does exist, killing connection
                     socket.emit('serverError', {
@@ -30,14 +32,17 @@ module.exports.listen = app => {
             }
         });
 
-        io.on('message', data => {
+        socket.on('message', data => {
+            console.log("got msg")
             if (socket.authenticated) {
                 if (authenticatedClients[data.recipientId]) {
-                    authenticatedClients[data.recipientId].emit('message', {
+                    const messageData = {
                         senderId: socket.userData.accountId,
                         senderName: socket.userData.realName,
                         message: data
-                    });
+                    };
+                    authenticatedClients[data.recipientId].emit('message', messageData);
+                    socket.emit('message', messageData);
                 } else {
                     socket.emit('serverError', {
                         cause: 'sentmsg',
@@ -53,12 +58,10 @@ module.exports.listen = app => {
             }
         });
 
-        io.on('disconnect', () => {
+        socket.on('disconnect', () => {
             if (socket.authenticated) {
                 delete authenticatedClients[socket.userData.accountId];
             }
         });
     });
-
-    return io;
 }

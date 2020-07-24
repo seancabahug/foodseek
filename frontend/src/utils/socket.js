@@ -4,13 +4,19 @@ import APIUtil from '../utils/apiutil';
 
 const cookies = new Cookies();
 
-export default () => {
-    const socket = io();
-    socket.on('connect', () => {
-        socket.emit('authenticate', cookies.get('token'));
-    })
-    const registerErrorHandlers = ({ onSendMessageError, onAuthError, onUnknownError }) => {
-        socket.on('serverError', data => {
+export default class Socket {
+    constructor() {
+        this.socket = io.connect();
+        this.socket.on('connect', () => {
+            this.socket.emit('authenticate', cookies.get('token'));
+            console.log("connect")
+        });
+        this.socket.on('error', err => {
+            console.error("socket.io error: " + err);
+        });
+    }
+    registerErrorHandlers({ onSendMessageError, onAuthError, onUnknownError }) {
+        this.socket.on('serverError', data => {
             switch(data.cause) {
                 case 'auth': onAuthError(data.details); break;
                 case 'sentmsg': onSendMessageError(data.details); break;
@@ -18,16 +24,17 @@ export default () => {
             }
         })
     }
-    const onMessageReceived = callback => {
-        socket.on('message', callback);
+    registerMessageHandler(callback) {
+        this.socket.on('message', data => {
+            console.log(data)
+            callback(data);
+        })
     }
-    const sendMessage = (message, recipientId) => {
-        socket.emit('message', {
+    sendMessage(message, recipientId) {
+        console.log("sending msg")
+        this.socket.emit('message', {
             recipientId: recipientId, 
             message: message
         });
     }
-    socket.on('error', err => {
-        console.error("socket.io error: " + err);
-    });
 }

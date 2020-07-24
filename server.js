@@ -11,7 +11,8 @@ const mongoose = require('mongoose');
 // Set up our app
 const app = express();
 const server = http.Server(app);
-require('./socketserver').listen(server);
+const io = require('socket.io')(server);
+require('./socketserver')(io)
 
 // Initializes the port and the url
 const url = process.env.MONGODB_URL;
